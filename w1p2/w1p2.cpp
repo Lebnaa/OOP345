@@ -25,6 +25,9 @@ my professor provided to complete my workshops and assignments.
 
 int cout = 0; // won't compile if headers don't follow convention regarding namespaces
 
+double g_taxrate = 0;
+double g_discount = 0;
+
 /* input file format: a comma separated set of fields with a consistent format of
 <Ride Order Tag>,<Customer Name>,<Ride Description>,<Rate>,<Discount Status>
 
@@ -59,8 +62,6 @@ int main(int argc, char* argv[])
 
 	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
 		std::cout << "--------------------------\n\n";
-
-
 
 	// Keep a record of the *Home* rides separately
 	sdds::RideRequest recordedRequests[10];
