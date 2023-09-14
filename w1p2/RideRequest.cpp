@@ -92,16 +92,13 @@ istream& RideRequest::read(std::istream& input)
 		input.get();
 		//Read discount
 		input.get(tempDiscount);
-		//get the newline
-		//input.get();
 
 		//check if reading succeeded
 		if (input)
 		{
-			//Read successful, assign to members
+			//assign to members
 			strcpy(m_custName, tempName);
-			//strcpy(m_rideDesc, tempDesc);
-			//Checking if description is empty, if not clear it before copying to it
+			//clearing description before copying to it
 
 			delete[] m_rideDesc;
 
@@ -111,12 +108,10 @@ istream& RideRequest::read(std::istream& input)
 			strcpy(m_rideDesc, tempDesc.c_str());
 
 			m_ridePrice = tempPrice;
-			//cout << endl << "HAVE READ PRICE FOR " << m_customerName << " >" << tempPrice << "<" << endl;
 			m_isDiscounted = (tempDiscount == 'Y') ? true : false;
 		}
 		else
 		{
-			//failed reading, destroy this object
 			setEmpty();
 		}
 	}

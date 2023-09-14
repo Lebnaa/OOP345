@@ -19,34 +19,16 @@ namespace sdds
 	public:
 		RideRequest();
 		RideRequest(RideRequest& copy);
-		~RideRequest();
-		/// <summary>
-		/// Read name, desc and boolean if discounted from given istream
-		/// </summary>
-		/// <param name="input">where to read from</param>
-		/// <returns>same istream that was passed</returns>
-		std::istream& read(std::istream& input);
-		/// <summary>
-		/// display counter and contents of the object to cout
-		/// </summary>
-		void display() const;
-		/// <summary>
-		/// copy assignment operator
-		/// </summary>
-		/// <param name="ro">what to assign</param>
-		/// <returns>object after assigning</returns>
 		RideRequest& operator=(RideRequest& ro);
+		~RideRequest();
+		
+		std::istream& read(std::istream& input);		
+		void display() const;
+
 	private:
-		/// <summary>
-		/// Return true if name populated
-		/// </summary>
 		operator bool()const;
-		/// <summary>
-		/// sets current object to empty state
-		/// </summary>
 		void setEmpty();
 	};
-
 
 }
 #endif // !SDDS_RIDEREQUEST_H
