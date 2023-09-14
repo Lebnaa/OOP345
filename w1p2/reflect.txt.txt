@@ -1,0 +1,25 @@
+Reflection 
+
+-In this workshop, I was able to practice and use different types of variables and their default linkage process. For example, Internal linkage refers to variables and functions that are only accessible with a specific unit of code. 
+In this code we make local varibales that has internal linkage, because they are declared in a block of code and can only be used there. 
+
+if (input) // Testing if istream is in a good state
+{
+    char tempName[CUSTOMER_NAME_MAX]{};
+    string tempDesc{};
+    double tempPrice{};
+    char tempDiscount{};
+}
+
+External linkage refers to variables or functions that can be accessed throughout the code. And how we can do this is by keyword extern which will declare the varibles but we would also have to define it in the file that will be using the variable.   
+
+extern double g_taxrate;
+extern double g_discount;
+
+
+Static variables are variables that stay alive throughout the runtime of the program. Also it keeps it's value and returns it during multiple calls. 
+
+void sdds::RideRequest::display() const {
+    static size_t count = 1;
+
+
