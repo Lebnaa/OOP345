@@ -12,6 +12,15 @@ my professor provided to complete my workshops and assignments.
 // Workshop 1 - Linkage, Storage Duration, Namespaces, and OS Interface
 // Hina Tariq - 2023/03/06
 // Cornel - 2023/09/08
+// Workshop 1 - Linkage, Storage Duration, Namespaces, and OS Interface
+// Hina Tariq - 2023/03/06
+// Cornel - 2023/09/08
+
+
+
+
+double g_taxrate; 
+double g_discount;
 
 #include <iostream>
 #include <iomanip>
@@ -25,8 +34,6 @@ my professor provided to complete my workshops and assignments.
 
 int cout = 0; // won't compile if headers don't follow convention regarding namespaces
 
-double g_taxrate = 0;
-double g_discount = 0;
 
 /* input file format: a comma separated set of fields with a consistent format of
 <Ride Order Tag>,<Customer Name>,<Ride Description>,<Rate>,<Discount Status>
@@ -42,26 +49,21 @@ double g_discount = 0;
 
 // TODO: write the prototype for the main function
 //         to accept command line arguments
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
-	std::string menuOptions[] = {
-		"ws",
-		"rides1.txt",
-		"rides2.txt",
-		"deleted.txt",
-		"rides4.txt"
-	};
-
 	std::cout << "Command Line:\n";
 	std::cout << "--------------------------\n";
-	// Use a for loop to print the menu options
-	for (int option = 0; option < sizeof(menuOptions) / sizeof(menuOptions[0]); ++option) 
-	{
-		std::cout << option + 1 << ": " << menuOptions[option] << "\n";
-	}
-
+	// TODO: print the command line here, in the format
+	//   1: first argument
+	//   2: second argument
+	//   3: third argument
+	//   ...
 	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
-		std::cout << "--------------------------\n\n";
+	for (int i = 0; i < argc; i++)
+	{
+		std::cout << std::setw(3) << i + 1 << ": " << argv[i] << std::endl;
+	}
+	std::cout << "--------------------------\n\n";
 
 	// Keep a record of the *Home* rides separately
 	sdds::RideRequest recordedRequests[10];

@@ -5,14 +5,14 @@
 extern double g_taxrate;
 extern double g_discount;
 
-const int CUSTOMER_NAME_MAX = 10;
+const int CUSTOMER_NAME = 10;
 const int MAX_RIDE_DESC = 25;
 
 namespace sdds
 {
 	class RideRequest
 	{
-		char m_customerName[CUSTOMER_NAME_MAX]{};
+		char m_custName[CUSTOMER_NAME]{};
 		char* m_rideDesc{};//Dynamic c type string
 		double m_ridePrice{};
 		bool m_isDiscounted{};

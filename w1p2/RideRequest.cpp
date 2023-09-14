@@ -18,49 +18,72 @@ my professor provided to complete my workshops and assignments.
 using namespace sdds;
 using namespace std;
 
-RideRequest::RideRequest() : m_customerName{}, m_rideDesc{}, m_isDiscounted{}
+RideRequest::RideRequest() : m_custName{}, m_rideDesc{}, m_isDiscounted{}
 {
 }
-/// <summary>
-/// Rule of three copy constructor
-/// </summary>
-/// <param name="copy"></param>
-sdds::RideRequest::RideRequest(RideRequest& copy)
+
+
+RideRequest::RideRequest(RideRequest& copy)
 {
 	*this = copy;
 }
+
+
+RideRequest& RideRequest::operator=(RideRequest& copy)
+{
+	if (*this != copy)
+	{
+		if (copy)
+		{	//if in good state copy all
+			strcpy(m_custName, copy.m_custName);
+			//Checking if description is empty, if not clear it before copying to it
+
+			delete[] m_rideDesc;
+
+			//Dynamically allocate space for description and copy to it
+			size_t size = strlen(copy.m_rideDesc);
+			m_rideDesc = new char[size + 1];
+			strcpy(m_rideDesc, copy.m_rideDesc);
+
+			m_ridePrice = copy.m_ridePrice;
+			m_isDiscounted = copy.m_isDiscounted;
+		}
+		else
+		{	//otherwise destroy the object
+			setEmpty();
+		}
+	}
+	return *this;
+}
+
 
 RideRequest::~RideRequest()
 {
 	setEmpty();
 }
-/// <summary>
-/// returns true if object is not in empty state
-/// </summary>
-sdds::RideRequest::operator bool() const
+
+RideRequest::operator bool() const
 {
-	return !(m_customerName[0] == '\0');
+	return !(m_custName[0] == '\0');
 }
-/// <summary>
-/// sets the object to empty  state, deletes the dynamically allocated description
-/// </summary>
-void sdds::RideRequest::setEmpty()
+
+void RideRequest::setEmpty()
 {
-	m_customerName[0] = '\0';
+	m_custName[0] = '\0';
 	delete[] m_rideDesc;
 	m_rideDesc = NULL;
 }
 
-std::istream& sdds::RideRequest::read(std::istream& input)
+istream& RideRequest::read(std::istream& input)
 {
 	if (input)//testing if istream is in good state
 	{
-		char tempName[CUSTOMER_NAME_MAX]{};
+		char tempName[CUSTOMER_NAME]{};
 		string tempDesc{};
 		double tempPrice{};
 		char tempDiscount{};
 		//Read name
-		input.getline(tempName, CUSTOMER_NAME_MAX, ',');
+		input.getline(tempName, CUSTOMER_NAME, ',');
 		//Read description
 		getline(input, tempDesc, ',');
 		//Read price
@@ -76,7 +99,7 @@ std::istream& sdds::RideRequest::read(std::istream& input)
 		if (input)
 		{
 			//Read successful, assign to members
-			strcpy(m_customerName, tempName);
+			strcpy(m_custName, tempName);
 			//strcpy(m_rideDesc, tempDesc);
 			//Checking if description is empty, if not clear it before copying to it
 
@@ -100,21 +123,21 @@ std::istream& sdds::RideRequest::read(std::istream& input)
 	return input;
 }
 
-void sdds::RideRequest::display() const {
+void RideRequest::display() const 
+{
 	static size_t count = 1;
 	if (*this)
 	{
 		//calculate tax
 		double priceWithTax = m_ridePrice * (1 + g_taxrate);
 
-		//cout << endl << m_customerName << "'s PRICE IS: >" << m_ridePrice << "<" << endl;
-		//cout << "AFTER TAX: >" << priceWithTax << "<" << endl;
-		//cout << "TAX RATE: >" << g_taxrate << "<" << endl;
-
+		//setiosflag aligns to the left within its 2-character-wide field
 		cout << setw(2) << setiosflags(ios::left) << count << ". ";
-		cout << setw(CUSTOMER_NAME_MAX) << m_customerName << '|';
+		cout << setw(CUSTOMER_NAME) << m_custName << '|';
 		cout << setw(MAX_RIDE_DESC) << m_rideDesc << '|';
+		//rest character 
 		cout << setw(12) << std::fixed << setprecision(2) << priceWithTax << '|' << resetiosflags(ios::left);
+
 		//if discounted print discounted price
 		if (m_isDiscounted)
 		{
@@ -130,31 +153,4 @@ void sdds::RideRequest::display() const {
 		cout << setw(2) << count << ". No Ride Request" << endl;
 	}
 	count++;
-}
-
-RideRequest& sdds::RideRequest::operator=(RideRequest& ro)
-{
-	if (*this != ro)
-	{
-		if (ro)
-		{	//if in good state copy all
-			strcpy(m_customerName, ro.m_customerName);
-			//Checking if description is empty, if not clear it before copying to it
-
-			delete[] m_rideDesc;
-
-			//Dynamically allocate space for description and copy to it
-			size_t size = strlen(ro.m_rideDesc);
-			m_rideDesc = new char[size + 1];
-			strcpy(m_rideDesc, ro.m_rideDesc);
-
-			m_ridePrice = ro.m_ridePrice;
-			m_isDiscounted = ro.m_isDiscounted;
-		}
-		else
-		{	//otherwise destroy the object
-			setEmpty();
-		}
-	}
-	return *this;
 }
