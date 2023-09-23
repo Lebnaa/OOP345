@@ -23,7 +23,6 @@ RideRequest::RideRequest() : m_custName{}, m_rideDesc{}, m_isDiscounted{}
 {
 }
 
-
 RideRequest::RideRequest(RideRequest& copy)
 {
 	*this = copy;
@@ -41,13 +40,16 @@ RideRequest& RideRequest::operator=(RideRequest& copy)
 
 			delete[] m_rideDesc;
 
-			//Dynamically allocate space for description and copy to it
-			size_t size = strlen(copy.m_rideDesc);
-			m_rideDesc = new char[size + 1];
-			strcpy(m_rideDesc, copy.m_rideDesc);
-
+			//shallow copy 
 			m_ridePrice = copy.m_ridePrice;
 			m_isDiscounted = copy.m_isDiscounted;
+
+			//Dynamically allocate space for description and copy to it
+			size_t size = strlen(m_rideDesc);
+			m_rideDesc = new char[size + 1];
+			strcpy(m_rideDesc, m_rideDesc);
+
+			
 		}
 		else
 		{	//otherwise destroy the object
@@ -131,7 +133,7 @@ void RideRequest::display() const
 		cout << setw(2) << setiosflags(ios::left) << count << ". ";
 		cout << setw(CUSTOMER_NAME) << m_custName << '|';
 		cout << setw(MAX_RIDE_DESC) << m_rideDesc << '|';
-		//rest character 
+		//rests esetiosflag back to 2 character 
 		cout << setw(12) << std::fixed << setprecision(2) << priceWithTax << '|' << resetiosflags(ios::left);
 
 		//if discounted print discounted price

@@ -114,11 +114,13 @@ int main(int argc, char** argv)
 			currentRide = currentRide;
 
 			// Handle the office and home rides differently
-			if (ridetag == 'O') {
+			if (ridetag == 'O') 
+			{
 				sdds::RideRequest copy = currentRide;
 				copy.display();
 			}
-			else if (ridetag == 'H') { // adds the home rides to the record
+			else if (ridetag == 'H') 
+			{ // adds the home rides to the record
 				recordedRequests[numRides++] = currentRide;
 				currentRide.display();
 			}
