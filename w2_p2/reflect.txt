@@ -1,1 +1,24 @@
-ekjkfdsb
+/*									Workshop 2 Part 2
+	Lebna Noori
+	Sections: NAA
+	Student ID: 157672205
+	Seneca Email: lnoori1@myseneca.ca
+	Date: Sept. 14/2023
+
+I have done all the coding by myself and only copied the code that
+my professor provided to complete my workshops and assignments.
+*/
+
+
+
+Reflection 
+1. Copy constructor creates new object and intializes it with existing data, performs deep copying of the whole resource object into destination object. Looking at the time it is pretty time consuming, and could take even more time when dealig with bigger objects. With move construcot we can just move ownership of resource from a object to another without having to go through copying process, when we can just move or transfer pointers or refrences. Move constructs are usaully useful when we know that the source object that we are copying is going out of scope and won't be used afterwords. 
+
+2. In the read function I used an extra function to keep track of the number of roww in the csv file, because we needed to allocate memory for airport array based on the number of rows. I think in order to avoid re-reading the file, we store it in memory right after reading it, and access whenever needed instead of re-reading the whole file. that way we can use less of file I/O operations, and use less line of code.  
+
+
+3. After completing the workshop and time module which was quite challenging for me because it was my first time using steady. In order to measure times with a almost perfect level of accuracy and support, std::steady_clock is the best method, and It is independent of the system's real-time clock and  does not change whatsoever. Since its almost perfect It can be used to set timers, calculate times, and measure durations like how we were supposed to in our workshop. When we need a time source that does not get effected by system clock changes and gives accurate measurements for timing, use we should use  std::steady_clock. 
+
+The system's real-time clock is done by std::system_clock,  can be used to get the current time and date in a readable format, that us humans can undrestand.
+It takes leap seconds, time zone changes, and system time changes in consideration.
+When we need to work with timestamps, plan events based on wall-clock time, or format time, we should use std::system_clock.
