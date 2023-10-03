@@ -97,6 +97,7 @@ std::ostream& sdds::operator<<(std::ostream& os, const Airport& airPort)
 
 std::ostream& sdds::printLabel(std::ostream& os, const string& str)
 {
+    //setiosflags sets formatting flags to right
     return os << setiosflags(ios::right) << setw(20) << setfill('.') << str << " : " << resetiosflags(ios::right);
 }
 
@@ -130,6 +131,7 @@ int sdds::AirportLog::loadAirports(const char* fileName)
     //read a line for every m_count
     for (size_t i = 0; i < m_count && loaded; i++)
     {
+        //getline read lines of text from an stream
         getline(airportsFile, code, ',');
         getline(airportsFile, name, ',');
         getline(airportsFile, city, ',');
@@ -146,7 +148,6 @@ int sdds::AirportLog::loadAirports(const char* fileName)
         }
         else
         {
-            //cout << "line count is: " << i << " but loaded became 0" << endl;
             loaded = 0;
         }
 
@@ -219,6 +220,7 @@ AirportLog sdds::AirportLog::findAirport(const char* state, const char* country)
     AirportLog result{};
     for (size_t i = 0; i < m_count; i++)
     {
+        //c_str() when you want to compare a string with a C-style string
         int stateMatch = strcmp(m_airPorts[i].m_airportState.c_str(), state);
         int countryMatch = strcmp(m_airPorts[i].m_airportCoutry.c_str(), country);
         if (!stateMatch && !countryMatch)

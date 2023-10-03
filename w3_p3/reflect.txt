@@ -1,0 +1,13 @@
+Reglection: W03
+
+Why getSmallestItem and getLargestItem functions can't be query is because they tell you the smallest and largest items in a collection. They are not queries because their answers can change as you add or remove items. They tell or print  the collection's current class state, so they cannot be fixed or unchanging.
+
+We added members to the Book Class, to make sure that a Book object always has valid data like a title, chapters, and pages.
+
+we defined class objects outside the class definition is because  when defining class objects outside the class definition, like as m_smallestItem and m_largestItem, is to make sure that they are shared with all instances of the class, other than belonging to each instances. These objects keep track of the smallest and largest items for all instances of the class. when defining them as static class members outside the class definition, they become shared class member of the class, which can be across all instances. 
+
+The specialization of m_smallestItem and m_largestItem objects for T = Book and C = 10 had a specific purpose, they were designed to represent the smallest and largest items in the collection. By specializing them for T = Book and C = 10, we are setting initial values for these objects that make sure they make sense in the context of a collection of books with a capacity of 10 in this situation. In this case, an empty string for the title, 1 for the number of chapters, and 10,000 for the number of pages serve as proper initial values for m_smallestItem and m_largestItem.
+
+
+Initializing m_smallestItem and m_largestItem for T = Book and C = 72 is necessary to make sure that they are correctly initialized when dealing with collections of books with a different capacity. Since those objects represent the smallest and largest items for all instances of the class, they need to be initialized to values that make sense in the situation of a collection with a capacity of 72. Specializing these values makes sures that the class can correctly track the smallest and largest books in a larger collection as well. Without this initialization, these objects could have wrong initial or starting values when working with different capacities. 
+
