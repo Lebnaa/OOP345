@@ -1,0 +1,56 @@
+Reflection 
+
+The difference between composition and aggregation is that in composition there is resource management, and ownership. For exmaple, a cheese shop isnt one without cheese, so its composed of cheese, a cheese party can still be a party without cheese.
+
+the array of cheese in cheese shop is declared, where  the const means that the actual value of the cheese cannot be changed in cheese party but different in cheese shop.
+
+Cheese** m_cheeses{};
+and in cheese party like so:
+const Cheese** m_pCheeses{};
+
+The biggest difference betweeen the two  is in how we clear the dynamically allocated array, and free memory space
+
+cheese shop:
+void sdds::CheeseShop::emptyShop()
+{
+	if (*this)
+	{
+		for (size_t i = 0; i < m_cheeseNum; i++)
+		{
+			delete m_Cheese[i];
+			m_Cheese[i] = nullptr;
+		}
+	}
+	m_shopName = "";
+	m_cheeseNum = 0u;
+	delete[] m_Cheese;
+	m_Cheese = nullptr;
+}
+and cheese party:
+void sdds::CheeseParty::emptyParty()
+
+{
+
+	for (size_t i = 0; i < m_numCheeses; i++)
+
+	{
+
+		m_pCheeses[i] = nullptr;
+	}
+	m_numCheeses = 0;
+	delete[] m_pCheeses;
+	m_pCheeses = nullptr;
+}
+
+In cheese shop we had to delete each and every cheese in the array before deleting the array itself,  but in cheeseParty im only deleting the array itself.
+
+
+- For adding cheese in party I had to check for duplicates first, to make sure I don't have 2 pointers to the same cheese, in shop thats not a problem since every cheese is its own instance.
+
+Also in shop when creating a new resized array I had to dynamically allocate the array and every cheese.
+
+- The function to remove cheese would work similarly to how it does in a party. I would give CheeseShop three new member functions:
+findEmptyCheese: Loops through all cheese objects until it hits the end or a cheese with weight 0. It then returns the index with an empty cheese, or -1, if there are no more cheese objects.
+removeCheeseAndShrink: Lower the amount of cheeses in the class by 1 by looping through all cheese objects and copying them to a new array until the index to delete is reached. After that, it skips this index and copies the rest.
+The only difference between shop and party would be that in shop's function removeCheeseAndShrink, before copying the cheese, a new one will be dynamically allocated.
+
