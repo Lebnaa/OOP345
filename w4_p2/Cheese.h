@@ -17,7 +17,7 @@ my professor provided to complete my workshops and assignments.
 
 namespace sdds
 {
-	class Cheese
+	class Cheese 
 	{
 		std::string m_name;
 		unsigned m_weight;

@@ -14,6 +14,7 @@ my professor provided to complete my workshops and assignments.
 #include <string>
 #include "Cheese.h"
 
+using namespace std; 
 using namespace sdds;
 
 sdds::Cheese::Cheese() : m_weight{}, m_price{}, m_features{}
