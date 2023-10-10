@@ -14,7 +14,6 @@ my professor provided to complete my workshops and assignments.
 #include <string>
 #include "Cheese.h"
 
-using namespace std;
 using namespace sdds;
 
 sdds::Cheese::Cheese() : m_weight{}, m_price{}, m_features{}
@@ -24,8 +23,8 @@ sdds::Cheese::Cheese() : m_weight{}, m_price{}, m_features{}
 
 sdds::Cheese::Cheese(const std::string& details)
 {
-	string temp{};
-	string copy = details;
+	std::string temp{};
+	std::string copy = details;
 	size_t delim{};
 
 	//get cheese name

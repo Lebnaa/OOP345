@@ -47,7 +47,6 @@ namespace sdds
 		~CheeseShop();
 
 	};
-
 	std::ostream& operator<<(std::ostream& os, const CheeseShop& cshop);
 
 }
