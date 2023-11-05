@@ -20,16 +20,11 @@ I had to call its find() as well, so I have to cast it to a Directory before doi
 
 result = dynamic_cast<Directory*>(m_contents[i])->find(name, flags);
 
-- As we're being told "Anything is possible in C++". I would say it's possible but I think it would be much harder to remove directories recursively because I think we dont really manage the resourses. For example, in this workshop; 
-The Directory destructor looks like:
+- std::vector<sdds Resource*> (using pointers):
+Storing pointers to resources you can have a collection of resources of different derived types. Pointers give you control over the lifetime of the resources, which means we're in composition relation. You can allocate and deallocate resources dynamically, and have control over where resources are created and destroyed could be at different times. But, using pointers we need to manage memory for the objects pointed to by the pointers and includes memory allocation and deallocation. If a resource is destroyed while its pointer is still in use, you can end up with invalid pointers, can cause errors 
 
-	Directory::~Directory()
-	{
-		for (auto item : m_contents)
-			delete item;
-	}
-	
-If i had to remove a directory with a vector of Resources, 
-I would have to recursively removes the resource from each vector if Im deleting a Directory, which makes it much confusing and complicated.
+- std::vector<sdds::Resource> (using objects):
+Storing objects directly makes memory management much easier. Resources are created and destroyed automatically when they go in and out of scope, so no memory leaks. We're not composition relation anymore so we don't need to worry about the lifetime of objects or managing memory. 
+But, If out resources have different derived classes, we won't be able to store them in the same container without resorting to some kind of type destruction. Storing objects directly can involve more copying or moving operations, depending on how we manage the collection. 
 
 
