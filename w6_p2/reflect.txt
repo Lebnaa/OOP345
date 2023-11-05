@@ -1,0 +1,35 @@
+/*									Workshop 6 Part 2
+	Lebna Noori
+	Sections: NAA
+	Student ID: 157672205
+	Seneca Email: lnoori1@myseneca.ca
+	Date: Sept. 14/2023
+
+I have done all the coding by myself and only copied the code that
+my professor provided to complete my workshops and assignments.
+*/
+
+
+
+Reflections : 
+- We need to deallocate the dynamically allocated memory in your vector of resources in order to prevent memory leaks, because the more memory the vector elements use without releasing it back it can slow the down the runtinme of our application and can cause crashes. It can also cause resource leaks specailly in this workshop, because when dealing with file and other things we can run out of avaliable resource. Not deallocating memory can make our program very hard debug because the problems or error dont pop-up immediately which makes ir hard to debug. When working with files, proper clean-up is important in order to avoid can cause problems. Specifically in this workshop we had to dealocate the memory because we manage it, class Directory manages the resources inside its vector, which means they're in composition relationship.
+
+
+- We had to cast the Resource pointer to a Directory pointer in order to use its member function find(). for example in the find() function of Directory if the RECURSIVE flag is passed and checked a certain directory,
+I had to call its find() as well, so I have to cast it to a Directory before doing so:
+
+result = dynamic_cast<Directory*>(m_contents[i])->find(name, flags);
+
+- As we're being told "Anything is possible in C++". I would say it's possible but I think it would be much harder to remove directories recursively because I think we dont really manage the resourses. For example, in this workshop; 
+The Directory destructor looks like:
+
+	Directory::~Directory()
+	{
+		for (auto item : m_contents)
+			delete item;
+	}
+	
+If i had to remove a directory with a vector of Resources, 
+I would have to recursively removes the resource from each vector if Im deleting a Directory, which makes it much confusing and complicated.
+
+
