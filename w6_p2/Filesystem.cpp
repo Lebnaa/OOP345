@@ -50,6 +50,7 @@ namespace sdds
 
 		} while (!done);
 	}
+
 	Filesystem::Filesystem(const char* fileName, const std::string& rootName)
 	{
 		m_root = new Directory(rootName);
