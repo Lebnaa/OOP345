@@ -12,7 +12,6 @@
 #include <vector>
 #include <list>
 
-
 namespace sdds
 {
 	const size_t EPIDEMIC_DEATHS = 300;
@@ -31,12 +30,12 @@ namespace sdds
 
 	class CovidCollection
 	{
-		std::vector<Covid> m_coll{};
+		std::vector<Covid> CovidRecord{};
 
 		void trimString(std::string& source);
 	public:
 		CovidCollection() = default;
-		CovidCollection(const char* fileName);
+		CovidCollection(const char* filename);
 		//part 2
 		void display(std::ostream& out, const std::string& country = "ALL") const;
 		void sort(const std::string& field = "country");
