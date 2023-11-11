@@ -356,9 +356,13 @@ namespace sdds
 			<< setw(6);
 		//print the year if positive
 		if (theCovid.m_year > 0)
+		{
 			out << theCovid.m_year << " | ";
+		}
 		else
+		{
 			out << " " << " | ";
+		}
 
 		out << setw(4) << theCovid.m_cases << " | "
 			<< setw(3) << theCovid.m_deaths << " | "
