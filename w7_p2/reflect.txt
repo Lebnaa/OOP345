@@ -1,0 +1,28 @@
+// Name: Lebna Noori 
+// Seneca Student ID: 157672205
+// Seneca email: lnoori1@myseneca.ca
+// Date of completion: Nov.9th 
+//
+// I confirm that I am the only author of this file and the content was created entirely by me.
+
+Reflections 
+
+All STL function used in this workshop:
+
+accumulate	-	To sum up the number of deaths and cases in the word and per country if one is provided 
+for_each	-	To display all Covids in the collection and to accumulate cases and deaths.
+sort		- 	To sort the collection based on received criteria, like country.
+any_of		-	For function inCollection to indicate wheather there exists a country with a specified variant with more than the amount of deaths specified.
+copy_if		-	To copy from collection to a new list any covid statistic with more deaths than provided.
+transform	-	To change the severity in each Covid in the collection to the corresponding one depending on number of deaths.
+
+
+
+If I wrote the loops myself I would have to come up with a lot more logic than exists, 
+like sort, the code would also be a lot slower than the provided algorithms.using algorithms provided saved a lot of time coming up with logic, and are much more efficient.
+
+
+I would redesign it so that an unsigned integer is received in place of a string, for example, 
+passing col.sort(0) would sort the collection based on the first member of Covid, which is country, if a number would be passed larger than number of member variables in Covid, an exception would be thrown that such a field does not exist.
+
+
