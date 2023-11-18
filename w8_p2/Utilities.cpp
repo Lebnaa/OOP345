@@ -1,3 +1,11 @@
+// Name: Lebna Noori 
+// Seneca Student ID: 157672205
+// Seneca email: lnoori1@myseneca.ca
+// Date of completion: Nov.9th 
+//
+// I confirm that I am the only author of this file
+//   and the content was created entirely by me.
+
 #include <memory>
 #include <utility>
 #include "DataBase.h"

@@ -1,0 +1,22 @@
+// Name: Lebna Noori 
+// Seneca Student ID: 157672205
+// Seneca email: lnoori1@myseneca.ca
+// Date of completion: Nov.9th 
+//
+// I confirm that I am the only author of this file
+//   and the content was created entirely by me.
+
+
+
+Question 1 - With smart pointers we dont have to worry about deallocating memory as it is automated with smart pointers. 
+For example for our utils.cpp file for the first function which excludeRaw, we have to manully deallocate memory or it will cause an memory leak, because we are dynamicaly allocating memory for Profile. And for the second functions which is excludeSmart and we smart ptr we no longer have to worry about deallocatin memory after allocating, because it is automated with smart pointers. 
+
+
+Question 2- in terms of syntax we for both pointers it is slightly different. for example for raw pointer its regular memory allocating and deallocating and we did place them in try and catch block to handle the exceptions thrown in other files. As for smart pointers when allocating it's very simple we have to create, validate and add it. Because smart pointers handle the clean-up part 
+
+
+
+Questions 3- So many copies are make because we create copies of pofile first and than validating it. So, it copies, validates, and adds it again. We can avoid this by validating first and leaving copying for last so we dont make double copies of valid profiles, and only get the valid profiles. 
+
+
+Question 4 - after checking with database.push_back(std::move(*newItem)); not alot of changes were made, as database.push_back(*newItem); also does the same job. I also tried addinf move contructor to for some reason the move constructor in the class "Profile", causes major errors and made things way more complicated. 
